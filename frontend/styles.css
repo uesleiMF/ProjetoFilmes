@@ -5,6 +5,8 @@ body {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+    color:aqua;
+    background-color: aqua;
 }
 main {
     flex: 1;

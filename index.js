@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 
 // importar as rotas que eu vou ultilizar
-const vagasRouter = require('./routes/vagas.routes');
+const filmesRouter = require('./routes/filmes.routes');
 
 // inicializacao do express
 const app = express();
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 //inicializar a rota /vagas de acordo com as configuracoes no meu arquivo de rotas
-app.use('/vagas', vagasRouter);
+app.use('/filmes', filmesRouter);
 
 
 
