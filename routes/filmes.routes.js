@@ -1,47 +1,51 @@
 const express = require('express');
-// inicializar as rotas do express
 const router = express.Router();
 
 const filmes = [
     {
         id: Date.now(),
-        nome: 'desenvolvedor front-end',
-        imagem: 'https://media-exp1.licdn.com/dms/image/C4E0BAQET4zubIYEjJQ/company-logo_200_200/0/1625249003866?e=2159024400&v=beta&t=AL_GUba4oxMd6gw0PcXSx3EpyI0F4bm5cBWF1m7OLSg',
-        salario: '3000',
-        senioridade: 'junior',
-        descricao: 'vaga de dev front-end xyz bla bla bla'
+        nome: 'MISSÃO RESGATE',
+        imagem: 'https://capas-p.imagemfilmes.com.br/164002_000_p.jpg',
+        nota: '10',
+        genero: 'AÇÃO',
+        descricao: 'Depois que uma distante mina de diamantes desmorona na região norte do Canadá, um motorista de caminhão (Liam Neesom) faz o impossível para conseguir atravessar o gelo e resgatar com vida os minerados soterrados durante o acidente. Mas as condições climáticas pioram a cada minuto, tornando a missão cada vez mais difícil.'
     },
+
+    {
+        id: Date.now(),
+        nome: 'HELLBOY',
+        imagem: 'https://capas-p.imagemfilmes.com.br/164781_000_p.jpg',
+        nota: '9',
+        genero: 'AÇÃO,COMEDIA',
+        descricao: 'Nimue (Milla Jovovich), a Rainha de Sangue, foi uma bruxa tão poderosa que nenhum mortal jamais conseguiu derrotá-la. Durante uma batalha, seu corpo foi dividido em seis partes e espalhado pelos lugares mais distantes da Terra. Séculos depois, um massacre num mosteiro próximo à Londres levanta a suspeita de que alguém pode estar querendo ressuscitá-la e Hellboy (David Harbour) recebe a missão de conter essa terrível ameaça.'
+    },
+
 ]
 
-// [GET] /vagas - Retornar uma lista de vagas
 router.get('/', (req, res) => {
     res.send(filmes);
 })
 
-// [GET] /vagas/{id} - Retornar uma unica vaga por id.
 router.get('/:id', (req, res) => {
     const idParam = req.params.id;
     const filme = filmes.find(filme => filme.id == idParam);
 
-    // verifica se a vaga nao foi encontrada
-    if(!filme) {
-        res.status(404).send({error: 'Vaga nao encontrada'});
+       if(!filme) {
+        res.status(404).send({error: 'Filme nao encontrado'});
         return;
     }
 
     res.send(filme);
 })
 
-// [POST] /vagas/add - Cadastro de uma nova vaga
 router.post('/add', (req, res) => {
-    // recebi o objeto da vaga para cadastar vinda do cliente (via requisicao http POST)
-    const filme = req.body;
+     const filme = req.body;
 
-    // validacao se existe os campos
+   
 
-    if(!filme || !filme.nome || !filme.salario || !filme.imagem || !filme.salario) {
+    if(!filme || !filme.nome || !filme.nota || !filme.imagem || !filme.genero) {
         res.status(400).send({
-            message: 'vaga inválida, esta faltando os campos titulo e salario'
+            message: 'Filme inválido, esta faltando o preenchimento de alguns campos'
         })
         return;
     }
@@ -49,54 +53,44 @@ router.post('/add', (req, res) => {
     filme.id = Date.now();
     filmes.push(filme);
     res.status(201).send({
-        message: 'Cadastro com sucesso',
+        message: 'Filme Cadastrado com sucesso',
         data: filme
     });
 })
 
-// [PUT] /vagas/edit/{id} - Edita uma vaga de acordo com o seu id e objeto recebido
 router.put('/edit/:id', (req, res) => {
-    // o objeto que veio do front para atualizar a vaga com o id recebido
-    const filmeEdit = req.body;
-    // o id recebido via parametro
-    const idParam = req.params.id;
-    // procura o indice da vaga pre cadastrada na lista de acordo com o id recebido para atualizala
-    let index = filmes.findIndex(filme => filme.id == idParam);
+       const filmeEdit = req.body;
+      const idParam = req.params.id;
+     let index = filmes.findIndex(filme => filme.id == idParam);
 
     if(index < 0) {
         res.status(404).send({
-            error: 'a vaga que voce está tentando editar nao foi encontrada'
+            error: 'O filme que voce está tentando editar nao foi encontrado'
         })
         return;
     }
 
-    // spread operator ...
-    // faz um espelho do item na lista e um espelho do objeto atualizado e junta os 2
-    filmes[index] = {
+        filmes[index] = {
         ...filmes[index],
         ...filmeEdit
     }
 
     res.send({
-        message: `filme ${filmes[index].titulo} atualizada com sucesso`,
+        message: `filme ${filmes[index].nome} atualizado com sucesso`,
         data: filmes[index]
     })
 })
 
-// [DELETE] /vagas/delete/{id} = exclui um item da lista de acordo com o seu id
 
 router.delete('/delete/:id', (req, res) => {
-    // acessamos o id recebido via parametro
     const idParam = req.params.id;
-
     const index = filmes.findIndex(filme => filme.id == idParam);
     const nome = filmes[index];
-    //excluimos a vaga da lista de acordo com o seu indice.
-    filmes.splice(index, 1);
+        filmes.splice(index, 1);
     res.send({
-        message: `filme ${nome.titulo} excluida com sucesso !`,
+        message: `filme ${nome.nome} excluido com sucesso !`,
     })
 })
 
-// exporta as rotas para serem usadas no index.
+
 module.exports = router;
