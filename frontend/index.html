@@ -142,9 +142,7 @@
                             <button class="btn btn-success" type="submit">Enviar</button>
                             <button class="btn btn-outline-danger" type="button">cancelar</button>
                             <button class="btn btn-outline-danger" type="reset">Limpar</button>
-                             </div>
-                    </div>
-                </div>
+                        
               </form>
         </section>
                 <br>
@@ -163,42 +161,128 @@
           
             
           <div class="row row-cols-1 row-cols-md-2 g-4 " id="lista">
-          </section>
+          
           </div>
           </div>
       </div>
 
+</section>
+<br><br>
 
-            <div class="container bg-info" id ="3">
-              <h2>FILMES ASSISTIDOS</h2>
-          </div>
-          
-          <div class="container">
-              <div class="row">
-          
-                  <div class="col-md-3">
-          
-                   
-                       
-               
-               
-               
-               
-                  </div>
-                
-                                                        
-                 </div>
-      
-    <div class="row">
-      <div class="col">
-          <div class="d-grid gap-2 d-md-block"> 
-                      
-    <button onclick="window.print()">Imprimir pagina</button>
-          </div>
-      </div>
+      <div class="container bg-info"id="3">
+
+        <h2>FILMES ASSISTIDOS</h2>
     </div>
+    
+    <div class="container">
+        <div class="row">
+                  
+    <section class="mt-2"> 
+              <script src="script.js"></script>
+              <div id="myBtnContainer">
+                  <button class="btn active" onclick="filterSelection('All')">TODOS OS FILMES</button>
+                  <button class="btn active" 
+               onclick="filterSelection('acao')">AÇÃO</button>
+                  <button class="btn active" 
+               onclick="filterSelection('comedia')">COMEDIA</button>
+               <button class="btn active" 
+               onclick="filterSelection('suspense')">SUSPENSE</button>
+                  <button class="btn active" 
+               onclick="filterSelection('religioso')">RELIGIOSO</button>
+              
+            </div>
+            </div>
+        </section>
+            
+        <div class="container">
+          <div class="row">
+                    
+      <section class="mt-2"> 
+                <div class="row row-cols-1 row-cols-md-2 g-4 filter"  id="acao">
+                      <div class="content">
+                          <img src="img/6.jpg" width="100%">
+                          <h4>MISSÃO IMPLACAVEL</h4>
+                          <p>This is me</p>
+                        </div>
+                      </div>
+                  </section>
+             
+                  
+                  <div class="container">
+                    <div class="row">
+                              
+                <section class="mt-2"> 
+                  <div class="row row-cols-1 row-cols-md-2 g-4 filter"  id="comedia">
+              <div class="content">
+                          <img src="img/5.jpg" width="100%">
+                          <h4>HELLBOY</h4>
+              
+                        </div>
+                      </div>
+                  </section>
+                      
+                  <div class="container">
+                    <div class="row">
+                              
+                <section class="mt-2"> 
+                  
+                  <div class="row row-cols-1 row-cols-md-2 g-4 filter"  id="suspense">
+                    <div class="content">
+                                <img src="img/7.jpeg" style="width:100%">
+                                <h4>SEI LA</h4>
+                    
+                              </div>
+                            </div>
+                        </section>
+                            
+                        <div class="container">
+                          <div class="row">
+                                    
+                      <section class="mt-2"> 
+                      
+                        <div class="row row-cols-1 row-cols-md-2 g-4 filter" id="religioso">
+                          <div class="content">
+                                      <img src="img/5.jpg" style="width:100%">
+                                      <h4>AINDA</h4>
+                          
+                                  </div>
+                              </div>
+                          
+                              </div>
 
-         
+
+
+
+                 <script>
+                 // Function to hide all other elements, bar the parameter provided
+                  function filterSelection(elementToShow){
+                  if(elementToShow != "All"){ 
+                  // Get an array of elements with the class name, filter.
+                  var x = document.getElementsByClassName("filter");
+                  // For each of them
+                  for(var i = 0; i < x.length; i++){
+                  // Make them invisible
+                  x[i].style.display = "none";
+                  }
+                  // Get and then make the one you want, visible
+                  var y = document.getElementById(elementToShow).style.display = "block";
+                  }
+                  else{ // If the parameter provided is all, we want to display everything
+                  // Get an array of elements with the class name, filter.
+                  var x = document.getElementsByClassName("filter");
+                  // For each of them
+                  for(var i = 0; i < x.length; i++){
+                  //Make them visible
+                  x[i].style.display = "block";
+                  }
+                  }
+              
+                  }
+                  </script>
+
+               
+                       
+           
     <script src="scripts.js"></script>
     
   </body>
