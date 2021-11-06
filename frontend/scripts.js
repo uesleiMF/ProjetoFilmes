@@ -40,6 +40,10 @@ const getFilmes = async () => {
 }
 
 
+
+
+
+
 const submitForm = async (event) => {
        event.preventDefault();
 
@@ -137,8 +141,6 @@ const clearFields = () => {
     genero.value = '';
     descricao.value = '';
 }
-
-
 
 
 

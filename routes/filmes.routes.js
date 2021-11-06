@@ -8,19 +8,19 @@ const filmes = [
         imagem: 'https://capas-p.imagemfilmes.com.br/164002_000_p.jpg',
         nota: '10',
         genero: 'AÇÃO',
-        descricao: 'Depois que uma distante mina de diamantes desmorona na região norte do Canadá, um motorista de caminhão (Liam Neesom) faz o impossível para conseguir atravessar o gelo e resgatar com vida os minerados soterrados durante o acidente. Mas as condições climáticas pioram a cada minuto, tornando a missão cada vez mais difícil.'
+        descricao: 'Depois que uma distante mina de diamantes desmorona na região norte do Canadá, um motorista de caminhão (Liam Neesom) faz o impossível para....'
     },
 
     {
         id: Date.now(),
-        nome: 'HELLBOY',
-        imagem: 'https://capas-p.imagemfilmes.com.br/164781_000_p.jpg',
+        nome: 'OS PARÇAS 2',
+        imagem: 'https://s2.glbimg.com/fv5sdc8t4HNICs4HJ6XrG29Qen0=/362x536/https://s2.glbimg.com/a7TZq-tnBcgDU2IM_nJoiERaaOI=/i.s3.glbimg.com/v1/AUTH_c3c606ff68e7478091d1ca496f9c5625/internal_photos/bs/2021/k/p/N5UmBtTIWRlkkemtfM4w/2021-019-os-parcas-2-poster.jpg',
         nota: '9',
-        genero: 'AÇÃO,COMEDIA',
-        descricao: 'Nimue (Milla Jovovich), a Rainha de Sangue, foi uma bruxa tão poderosa que nenhum mortal jamais conseguiu derrotá-la. Durante uma batalha, seu corpo foi dividido em seis partes e espalhado pelos lugares mais distantes da Terra. Séculos depois, um massacre num mosteiro próximo à Londres levanta a suspeita de que alguém pode estar querendo ressuscitá-la e Hellboy (David Harbour) recebe a missão de conter essa terrível ameaça.'
+        genero: 'COMEDIA',
+        descricao: 'Toinho, Ray Van e Pilôra acham que estão feitos após aplicarem um golpe, mas tudo dá errado. Para se livrarem de uma roubada, precisam....'
     },
-
 ]
+
 
 router.get('/', (req, res) => {
     res.send(filmes);
@@ -38,12 +38,12 @@ router.get('/:id', (req, res) => {
     res.send(filme);
 })
 
+
 router.post('/add', (req, res) => {
      const filme = req.body;
 
-   
 
-    if(!filme || !filme.nome || !filme.nota || !filme.imagem || !filme.genero) {
+    if(!filme || !filme.nome || !filme.nota || !filme.imagem || !filme.nota) {
         res.status(400).send({
             message: 'Filme inválido, esta faltando o preenchimento de alguns campos'
         })
@@ -85,10 +85,10 @@ router.put('/edit/:id', (req, res) => {
 router.delete('/delete/:id', (req, res) => {
     const idParam = req.params.id;
     const index = filmes.findIndex(filme => filme.id == idParam);
-    const nome = filmes[index];
+    const name = filmes[index];
         filmes.splice(index, 1);
     res.send({
-        message: `filme ${nome.nome} excluido com sucesso !`,
+        message: `filme ${name.nome} excluido com sucesso !`,
     })
 })
 
